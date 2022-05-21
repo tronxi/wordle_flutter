@@ -28,7 +28,7 @@ class KeyBoard extends StatelessWidget {
               LetterKey(letter: "P", letterStatus: _retrieve(wordle, "P")),
             ],
           ),
-          const SizedBox(height:10),
+          const SizedBox(height:15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -44,7 +44,7 @@ class KeyBoard extends StatelessWidget {
               LetterKey(letter: "Ñ", letterStatus: _retrieve(wordle, "Ñ")),
             ],
           ),
-          const SizedBox(height:10),
+          const SizedBox(height:15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  <Widget>[

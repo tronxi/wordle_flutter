@@ -19,7 +19,7 @@ class LetterKey extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wordleBloc = context.read<WordleBloc>();
-    double width = letter.length == 1 ? 25 : 70;
+    double width = letter.length == 1 ? 30 : 65;
     return GestureDetector(
       onTap: () => _onPressed(wordleBloc),
       child: Container(

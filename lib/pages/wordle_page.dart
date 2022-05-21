@@ -20,7 +20,10 @@ class WordlePage extends StatelessWidget {
         ],
         child: const Scaffold(
           body: Center(
-            child: WordlePageBody(),
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: WordlePageBody()
+            )
           ),
         )
     );
