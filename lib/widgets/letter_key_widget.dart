@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle_flutter/bloc/wordle_bloc.dart';
 
+import '../models/wordle_model.dart';
+
 class LetterKey extends StatelessWidget {
   final String letter;
-  const LetterKey(this.letter, {Key? key}) : super(key: key);
+  final LetterStatus letterStatus;
+  const LetterKey({Key? key, required this.letterStatus, required this.letter}) : super(key: key);
+
+  static const Map<LetterStatus, Color> letterColorMap = {
+    LetterStatus.nothing: Color.fromRGBO(194, 189, 189, 1.0),
+    LetterStatus.fail: Color.fromRGBO(100, 104, 100, 1.0),
+    LetterStatus.ordered: Color.fromRGBO(42, 244, 13, 1.0),
+    LetterStatus.unordered: Colors.amber
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +26,12 @@ class LetterKey extends StatelessWidget {
         margin: const EdgeInsets.only(left: 5.0),
         width: width,
         height: 35,
-        decoration: const BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.all(Radius.circular(5))
+        decoration: BoxDecoration(
+            color: letterColorMap[letterStatus],
+            borderRadius: const BorderRadius.all(Radius.circular(5))
         ),
         child: Center(
-          child: Text(letter,
+          child: Text(letter.toUpperCase(),
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
@@ -33,7 +43,9 @@ class LetterKey extends StatelessWidget {
   void _onPressed(WordleBloc wordleBloc) {
     if(letter.toUpperCase() == "DEL") {
       wordleBloc.add(DelLetterEvent());
-    } else {
+    } else if(letter.toUpperCase() == "ENTER") {
+      wordleBloc.add(EnterLetterEvent());
+    }else {
       wordleBloc.add(AddLetterEvent(letter: letter));
     }
   }
