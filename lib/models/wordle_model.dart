@@ -75,7 +75,7 @@ class Wordle {
       }
       description += "\n";
     }
-
+    description += "https://tronxi.ddns.net/wordle";
     return description;
   }
 
