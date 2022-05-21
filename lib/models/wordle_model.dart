@@ -52,4 +52,31 @@ class Wordle {
 
   String get word => words[actual].word;
 
+  String get description {
+    String failEmoji = "⬛";
+    String unorderedEmoji = "🟨";
+    String orderedEmoji = "🟩";
+    String total;
+    if(status == WordleStatus.completed) {
+      total = "${actual + 1}";
+    } else {
+      total = "X";
+    }
+    String description = "Wordle $total/$totalTries \n\n";
+    for(var wordStatus in words) {
+      for(var letterStatus in wordStatus.letterStatus) {
+        if(letterStatus == LetterStatus.fail) {
+          description += failEmoji;
+        } else if(letterStatus == LetterStatus.ordered) {
+          description += orderedEmoji;
+        } else if(letterStatus == LetterStatus.unordered) {
+          description += unorderedEmoji;
+        }
+      }
+      description += "\n";
+    }
+
+    return description;
+  }
+
 }

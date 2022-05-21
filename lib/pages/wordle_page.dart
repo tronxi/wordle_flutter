@@ -41,8 +41,8 @@ class WordlePageBody extends StatelessWidget {
         children:  <Widget>[
           const WordleResult(),
           if (!wordle.isFinished()) const KeyBoard(),
-          if (wordle.status == WordleStatus.completed) const FinalWin(),
-          if (wordle.status == WordleStatus.lost) const FinalGameOver()
+          if (wordle.status == WordleStatus.completed) FinalWin(description: wordle.description,),
+          if (wordle.status == WordleStatus.lost) FinalGameOver(description: wordle.description,)
         ],
       );
     });

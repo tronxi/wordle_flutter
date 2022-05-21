@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class FinalWin extends StatelessWidget {
-  const FinalWin({Key? key}) : super(key: key);
+  final String description;
+  const FinalWin({Key? key, required this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,22 +11,42 @@ class FinalWin extends StatelessWidget {
       width: 360,
       height: 80,
       decoration: const BoxDecoration(
-          color: Color.fromRGBO(42, 244, 13, 1.0), borderRadius: BorderRadius.all(Radius.circular(5))
+          color: Color.fromRGBO(129, 223, 115, 1.0), borderRadius: BorderRadius.all(Radius.circular(5))
       ),
-      child: const Center(
-        child: Text(
-          "Has Ganado!!!",
-          style: TextStyle(
-              fontSize: 30,
-          ),
-      )
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:  <Widget>[
+            const Text(
+              "Has Ganado!!!",
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.grey,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.share,
+                  color: Colors.black,
+                ),
+                onPressed: _share
+              ),
+            ),
+          ],
+        )
       ),
     );
+  }
+  void _share() {
+    Share.share(description);
   }
 }
 
 class FinalGameOver extends StatelessWidget {
-  const FinalGameOver({Key? key}) : super(key: key);
+  final String description;
+  const FinalGameOver({Key? key, required this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +54,35 @@ class FinalGameOver extends StatelessWidget {
       width: 360,
       height: 80,
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(220, 31, 31, 1.0), borderRadius: BorderRadius.all(Radius.circular(5))
+        color: Color.fromRGBO(239, 111, 111, 1.0), borderRadius: BorderRadius.all(Radius.circular(5))
       ),
-      child: const Center(
-        child: Text(
-          "Has perdido!",
-          style: TextStyle(
-              fontSize: 30,
-          ),
-        )
+      child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children:  <Widget>[
+              const Text(
+                "Has perdido!!!",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.grey,
+                child: IconButton(
+                    icon: const Icon(
+                      Icons.share,
+                      color: Colors.black,
+                    ),
+                    onPressed: _share
+                ),
+              ),
+            ],
+          )
       ),
     );
+  }
+  void _share() {
+    Share.share(description);
   }
 }
